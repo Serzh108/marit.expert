@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/marit.expert/static/css/main.4b8a7bd7.chunk.css",
+    "main.js": "/marit.expert/static/js/main.f9a9a160.chunk.js",
+    "main.js.map": "/marit.expert/static/js/main.f9a9a160.chunk.js.map",
+    "runtime-main.js": "/marit.expert/static/js/runtime-main.22c7fc71.js",
+    "runtime-main.js.map": "/marit.expert/static/js/runtime-main.22c7fc71.js.map",
+    "static/css/2.de71bbd8.chunk.css": "/marit.expert/static/css/2.de71bbd8.chunk.css",
+    "static/js/2.b45d61e4.chunk.js": "/marit.expert/static/js/2.b45d61e4.chunk.js",
+    "static/js/2.b45d61e4.chunk.js.map": "/marit.expert/static/js/2.b45d61e4.chunk.js.map",
+    "index.html": "/marit.expert/index.html",
+    "static/css/2.de71bbd8.chunk.css.map": "/marit.expert/static/css/2.de71bbd8.chunk.css.map",
+    "static/css/main.4b8a7bd7.chunk.css.map": "/marit.expert/static/css/main.4b8a7bd7.chunk.css.map",
+    "static/js/2.b45d61e4.chunk.js.LICENSE.txt": "/marit.expert/static/js/2.b45d61e4.chunk.js.LICENSE.txt",
+    "static/media/add-24px.0ba15a30.svg": "/marit.expert/static/media/add-24px.0ba15a30.svg",
+    "static/media/create-24px.72d43587.svg": "/marit.expert/static/media/create-24px.72d43587.svg",
+    "static/media/delete_sweep-24px.8d6d1b8b.svg": "/marit.expert/static/media/delete_sweep-24px.8d6d1b8b.svg",
+    "static/media/dworf.b4018ef2.jpg": "/marit.expert/static/media/dworf.b4018ef2.jpg",
+    "static/media/elf.9ce633a3.jpg": "/marit.expert/static/media/elf.9ce633a3.jpg",
+    "static/media/hobbit.b51949fd.jpg": "/marit.expert/static/media/hobbit.b51949fd.jpg",
+    "static/media/human.7d4f270a.jpg": "/marit.expert/static/media/human.7d4f270a.jpg",
+    "static/media/save-24px.dd990a62.svg": "/marit.expert/static/media/save-24px.dd990a62.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.22c7fc71.js",
+    "static/css/2.de71bbd8.chunk.css",
+    "static/js/2.b45d61e4.chunk.js",
+    "static/css/main.4b8a7bd7.chunk.css",
+    "static/js/main.f9a9a160.chunk.js"
+  ]
+}
