@@ -1,5 +1,4 @@
 import { raceSlice } from './raceReducer';
-// import deltaTime from '../helpers/deltaTime';
 
 const loadData = data => (dispatch, getState) => {
   // console.log('In Operations!!! -> loadData : ', data);
@@ -8,6 +7,7 @@ const loadData = data => (dispatch, getState) => {
 
 const addItem = data => (dispatch, getState) => {
   console.log('In Operations!!! -> click Add button : ', data);
+  alert("we don't use this function yet"); // temp!
   // dispatch(raceSlice.actions.addRaceItem(data));
 };
 
@@ -16,7 +16,7 @@ const renameItem = data => (dispatch, getState) => {
 };
 
 const removeItem = id => (dispatch, getState) => {
-  console.log('In Operations!!! -> click Remove button !!!', id);
+  // console.log('In Operations!!! -> click Remove button !!!', id);
   dispatch(raceSlice.actions.deleteItem(id));
 };
 

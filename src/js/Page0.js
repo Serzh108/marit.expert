@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-// import io from 'socket.io-client';
-import { io } from 'socket.io-client';
+import io from 'socket.io-client';
+// import { io } from 'socket.io-client';
 // import io from 'socket.io';
 import Button from '../components/Button/Button';
 import { ReactComponent as RemoveIcon } from '../images/icons/delete_sweep-24px.svg';
@@ -14,38 +14,24 @@ import styles from '../css/Page.module.css';
 
 export default function Page() {
   const [state, setState] = useState([]);
-  // const socket = io('http://testapi.marit.expert:3004');
+  const socket = io('https://testapi.marit.expert:3004');
+  // const socket = io('ws://localhost:3000');
 
-  const ref = useRef([]);
+  // socket.send({ cmd: 'get_list' });
 
-  useMemo(() => {
-    ref.current = new WebSocket('ws://testapi.marit.expert:3004');
-  }, [ref]);
+  // socket.onmessage = message => {
+  //   console.log('message = ', message);
+  // };
 
-  const socket = ref.current;
-
-  useEffect(() => {
-    socket.addEventListener('open', function (event) {
-      socket.send({ cmd: 'get_list' });
-    });
-    // return () => {
-    //   cleanup
-    // }
-  }, [socket]);
-
-  // Create WebSocket connection.
-  // const socket = new WebSocket('ws://testapi.marit.expert:3004');
-
-  // Connection opened
-  // socket.addEventListener('open', function (event) {
-  //   socket.send({ cmd: 'get_list' });
-  // });
-
-  // Listen for messages
-  socket.addEventListener('message', function (event) {
-    console.log('Message from server ', event.data);
-    event.data.length > 0 && setState(JSON.parse(event.data));
+  // =====-!= REP =!-=====
+  socket.on('connected', data => {
+    console.log('data :', data);
   });
+  socket.emit('get_list');
+  // socket.on('message', message => {
+  //   console.log('message = ', message);
+  // });
+  // =====-!=!-=====
 
   const clickRemoveHandler = e => {
     const li = e.target.closest('LI');

@@ -5,6 +5,7 @@ import Button from '../Button/Button';
 import { ReactComponent as RemoveIcon } from '../../images/icons/delete_sweep-24px.svg';
 import { ReactComponent as RenameIcon } from '../../images/icons/create-24px.svg';
 import { ReactComponent as AddIcon } from '../../images/icons/add-24px.svg';
+import { ReactComponent as SaveIcon } from '../../images/icons/save-24px.svg';
 import Hobbit from '../../images/hobbit.jpg';
 import Human from '../../images/human.jpg';
 import Dworf from '../../images/dworf.jpg';
@@ -21,14 +22,24 @@ const raceType = {
 export default function ListItem({ item }) {
   const dispatch = useDispatch();
   const state = useSelector(state => state.race.items);
-  const initialNames = state.length > 0 && state.map(item => item.name);
-  const [name, setName] = useState([]);
+  const initialNames =
+    state.length > 0 &&
+    state.reduce((acc, item) => {
+      acc[item.id] = item.name;
+      return acc;
+    }, {});
+  const [name, setName] = useState({});
   const [isSetNewName, setIsSetNewName] = useState(false);
   const [changedNameId, setchangedNameId] = useState();
 
+  const hideIcon = () => {
+    const screenWidth = window.screen.width;
+    return screenWidth > 420 ? true : false;
+  };
+
   const clickAddHandler = e => {
     const li = e.target.closest('LI');
-    console.log('click Add button !!!', li.id);
+    console.log('click Add button !!! id: ', li.id);
     const data = 'test data!!!';
     dispatch(addItem(data));
   };
@@ -47,16 +58,14 @@ export default function ListItem({ item }) {
 
   const changeNameSubmit = e => {
     e.preventDefault();
-    dispatch(renameItem({ id: changedNameId, name: name[changedNameId - 1] }));
+    dispatch(renameItem({ id: changedNameId, name: name[changedNameId] }));
     setIsSetNewName(false);
   };
 
   const inputHandler = e => {
     const li = e.target.closest('LI');
     const value = e.target.value;
-    const newNames = [...name];
-    newNames[li.id - 1] = value;
-    setName([...newNames]);
+    setName(prev => ({ ...prev, [li.id]: value }));
   };
 
   const selectedItem = currentId => {
@@ -70,24 +79,27 @@ export default function ListItem({ item }) {
         <h2>{item.race}</h2>
         <img src={raceType[item.race]} alt={item.race} />
         <Button onBtnClick={clickAddHandler}>
-          <AddIcon width="24" height="24" fill="#0ff" />
+          <AddIcon width="24" height="24" fill="#3f6caf" />
         </Button>
       </div>
-      {item.name}
+      <h3>{item.name}</h3>
       {selectedItem(item.id) ? (
-        <form onSubmit={changeNameSubmit}>
+        <form onSubmit={changeNameSubmit} className={styles.form}>
           <input
             className={styles.nameInput}
             type="text"
-            name="name"
-            value={name[item.id - 1]}
+            value={name[item.id]}
             onChange={inputHandler}
           />
-          <button type="submit" value="Ok" />
+          {hideIcon() && (
+            <button type="submit" className={styles.btn}>
+              <SaveIcon width="24" height="24" fill="#3f6caf" />
+            </button>
+          )}
         </form>
       ) : (
         <Button onBtnClick={clickRenameHandler}>
-          <RenameIcon width="24" height="24" fill="#f0f" />
+          <RenameIcon width="24" height="24" fill="#3f6caf" />
         </Button>
       )}
       <Button onBtnClick={clickRemoveHandler}>

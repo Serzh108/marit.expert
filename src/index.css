@@ -17,6 +17,12 @@ body {
   padding: 0;
 }
 
+h1 {
+  text-transform: uppercase;
+  padding: 12px 0;
+  font-size: 24px;
+}
+
 ul,
 ol,
 li {
@@ -37,4 +43,11 @@ button:hover {
 
 button:focus {
   outline: none;
+}
+
+@media screen and (min-width: 640px) {
+  h1 {
+    padding: 20px 0;
+    font-size: 32px;
+  }
 }
