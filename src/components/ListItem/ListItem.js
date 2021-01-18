@@ -19,7 +19,7 @@ const raceType = {
   Elf: Elf,
 };
 
-export default function ListItem({ item }) {
+export default function ListItem({ item, socket }) {
   const dispatch = useDispatch();
   const state = useSelector(state => state.race.items);
   const initialNames =
@@ -76,7 +76,7 @@ export default function ListItem({ item }) {
   return (
     <li className={styles.listItem} key={item.id} id={item.id}>
       <div>
-        <h2>{item.race}</h2>
+        {/* <h2>{item.race}</h2> */}
         <img src={raceType[item.race]} alt={item.race} />
         <Button onBtnClick={clickAddHandler}>
           <AddIcon width="24" height="24" fill="#3f6caf" />

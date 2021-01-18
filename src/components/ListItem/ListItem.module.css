@@ -1,5 +1,5 @@
 .listItem {
-  width: 20%;
+  margin-bottom: 16px;
   outline: 1px solid olive;
   box-shadow: 0 0 8px olive;
 }

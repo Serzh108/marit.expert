@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import io from 'socket.io-client';
-// import { io } from 'socket.io-client';
+// import io from 'socket.io-client';
+import { io } from 'socket.io-client';
 // import io from 'socket.io';
 import Button from '../components/Button/Button';
 import { ReactComponent as RemoveIcon } from '../images/icons/delete_sweep-24px.svg';
@@ -14,23 +14,25 @@ import styles from '../css/Page.module.css';
 
 export default function Page() {
   const [state, setState] = useState([]);
-  const socket = io('https://testapi.marit.expert:3004');
+  // const socket = io('http://testapi.marit.expert:3004');
+  const socket = io('http://testapi.marit.expert:3004', {
+    transports: ['websocket'],
+  });
   // const socket = io('ws://localhost:3000');
 
   // socket.send({ cmd: 'get_list' });
-
   // socket.onmessage = message => {
   //   console.log('message = ', message);
   // };
 
   // =====-!= REP =!-=====
-  socket.on('connected', data => {
-    console.log('data :', data);
-  });
-  socket.emit('get_list');
-  // socket.on('message', message => {
-  //   console.log('message = ', message);
+  // socket.on('connected', data => {
+  //   console.log('data :', data);
   // });
+  socket.emit({ cmd: 'get_list' });
+  socket.on('message', message => {
+    console.log('message = ', message.data);
+  });
   // =====-!=!-=====
 
   const clickRemoveHandler = e => {
