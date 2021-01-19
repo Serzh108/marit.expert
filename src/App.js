@@ -1,9 +1,7 @@
 import React from 'react';
-import './App.css';
-import Page from './js/Page';
-import Page0 from './js/Page0';
-
-// const wsURL = 'http://testapi.marit.expert:3004';
+import './styles/App.css';
+import Page from './Pages/Page';
+import Page0 from './Pages/Page0';
 
 function App() {
   return (

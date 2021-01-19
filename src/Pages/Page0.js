@@ -1,16 +1,23 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-// import io from 'socket.io-client';
+import React, { useState } from 'react';
 import { io } from 'socket.io-client';
 // import io from 'socket.io';
 import Button from '../components/Button/Button';
-import { ReactComponent as RemoveIcon } from '../images/icons/delete_sweep-24px.svg';
-import { ReactComponent as RenameIcon } from '../images/icons/create-24px.svg';
-import { ReactComponent as AddIcon } from '../images/icons/add-24px.svg';
-import Hobbit from '../images/hobbit.jpg';
-import Human from '../images/human.jpg';
-import Dworf from '../images/dworf.jpg';
-import Elf from '../images/elf.jpg';
-import styles from '../css/Page.module.css';
+import { ReactComponent as RemoveIcon } from '../assets/images/icons/delete_sweep-24px.svg';
+import { ReactComponent as RenameIcon } from '../assets/images/icons/create-24px.svg';
+import { ReactComponent as AddIcon } from '../assets/images/icons/add-24px.svg';
+// import { ReactComponent as SaveIcon } from '../assets/images/icons/save-24px.svg';
+import Hobbit from '../assets/images/hobbit.jpg';
+import Human from '../assets/images/human.jpg';
+import Dworf from '../assets/images/dworf.jpg';
+import Elf from '../assets/images/elf.jpg';
+import styles from './Page.module.css';
+
+const raceType = {
+  Hobbit: Hobbit,
+  Human: Human,
+  Dworf: Dworf,
+  Elf: Elf,
+};
 
 export default function Page() {
   const [state, setState] = useState([]);
@@ -18,17 +25,12 @@ export default function Page() {
   const socket = io('http://testapi.marit.expert:3004', {
     transports: ['websocket'],
   });
-  // const socket = io('ws://localhost:3000');
 
   // socket.send({ cmd: 'get_list' });
   // socket.onmessage = message => {
   //   console.log('message = ', message);
   // };
 
-  // =====-!= REP =!-=====
-  // socket.on('connected', data => {
-  //   console.log('data :', data);
-  // });
   socket.emit({ cmd: 'get_list' });
   socket.on('message', message => {
     console.log('message = ', message.data);
@@ -46,13 +48,6 @@ export default function Page() {
   const clickAddHandler = e => {
     const li = e.target.closest('LI');
     console.log('click Add button !!!', li.id);
-  };
-
-  const raceType = {
-    Hobbit: Hobbit,
-    Human: Human,
-    Dworf: Dworf,
-    Elf: Elf,
   };
 
   return (

@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem, renameItem, removeItem } from '../../redux/raceOperations';
 import Button from '../Button/Button';
-import { ReactComponent as RemoveIcon } from '../../images/icons/delete_sweep-24px.svg';
-import { ReactComponent as RenameIcon } from '../../images/icons/create-24px.svg';
-import { ReactComponent as AddIcon } from '../../images/icons/add-24px.svg';
-import { ReactComponent as SaveIcon } from '../../images/icons/save-24px.svg';
-import Hobbit from '../../images/hobbit.jpg';
-import Human from '../../images/human.jpg';
-import Dworf from '../../images/dworf.jpg';
-import Elf from '../../images/elf.jpg';
+import hideIcon from '../../helper/hideIcon';
+import { ReactComponent as RemoveIcon } from '../../assets/images/icons/delete_sweep-24px.svg';
+import { ReactComponent as RenameIcon } from '../../assets/images/icons/create-24px.svg';
+import { ReactComponent as AddIcon } from '../../assets/images/icons/add-24px.svg';
+import { ReactComponent as SaveIcon } from '../../assets/images/icons/save-24px.svg';
+import Hobbit from '../../assets/images/hobbit.jpg';
+import Human from '../../assets/images/human.jpg';
+import Dworf from '../../assets/images/dworf.jpg';
+import Elf from '../../assets/images/elf.jpg';
 import styles from './ListItem.module.css';
 
 const raceType = {
@@ -31,11 +32,6 @@ export default function ListItem({ item, socket }) {
   const [name, setName] = useState({});
   const [isSetNewName, setIsSetNewName] = useState(false);
   const [changedNameId, setchangedNameId] = useState();
-
-  const hideIcon = () => {
-    const screenWidth = window.screen.width;
-    return screenWidth > 420 ? true : false;
-  };
 
   const clickAddHandler = e => {
     const li = e.target.closest('LI');
@@ -76,7 +72,6 @@ export default function ListItem({ item, socket }) {
   return (
     <li className={styles.listItem} key={item.id} id={item.id}>
       <div>
-        {/* <h2>{item.race}</h2> */}
         <img src={raceType[item.race]} alt={item.race} />
         <Button onBtnClick={clickAddHandler}>
           <AddIcon width="24" height="24" fill="#3f6caf" />
